@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Abundio Wallet</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 2em; }
+  #balance { font-size: 2em; margin-bottom: 1em; }
+  input { margin-right: 0.5em; }
+</style>
+</head>
+<body>
+  <h1>Abundio Wallet</h1>
+  <div id="balance">Balance: 0</div>
+  <input id="amount" type="number" step="0.01" placeholder="Cantidad" />
+  <button id="deposit">Depositar</button>
+  <button id="withdraw">Retirar</button>
+
+  <script>
+    async function refreshBalance() {
+      const balance = await window.wallet.getBalance();
+      document.getElementById('balance').textContent = `Balance: ${balance}`;
+    }
+
+    document.getElementById('deposit').onclick = async () => {
+      const amount = parseFloat(document.getElementById('amount').value);
+      if (!isNaN(amount)) {
+        await window.wallet.deposit(amount);
+        document.getElementById('amount').value = '';
+        refreshBalance();
+      }
+    };
+
+    document.getElementById('withdraw').onclick = async () => {
+      const amount = parseFloat(document.getElementById('amount').value);
+      if (!isNaN(amount)) {
+        await window.wallet.withdraw(amount);
+        document.getElementById('amount').value = '';
+        refreshBalance();
+      }
+    };
+
+    refreshBalance();
+  </script>
+</body>
+</html>
