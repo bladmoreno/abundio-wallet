@@ -18,3 +18,5 @@ Esta es una billetera digital sencilla construida con [Electron](https://www.ele
    ```
 
 Aparecerá una ventana con el balance actual y botones para depositar o retirar.
+
+La lógica de la interfaz se encuentra en `renderer.js`.

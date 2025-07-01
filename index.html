@@ -16,31 +16,6 @@
   <button id="deposit">Depositar</button>
   <button id="withdraw">Retirar</button>
 
-  <script>
-    async function refreshBalance() {
-      const balance = await window.wallet.getBalance();
-      document.getElementById('balance').textContent = `Balance: ${balance}`;
-    }
-
-    document.getElementById('deposit').onclick = async () => {
-      const amount = parseFloat(document.getElementById('amount').value);
-      if (!isNaN(amount)) {
-        await window.wallet.deposit(amount);
-        document.getElementById('amount').value = '';
-        refreshBalance();
-      }
-    };
-
-    document.getElementById('withdraw').onclick = async () => {
-      const amount = parseFloat(document.getElementById('amount').value);
-      if (!isNaN(amount)) {
-        await window.wallet.withdraw(amount);
-        document.getElementById('amount').value = '';
-        refreshBalance();
-      }
-    };
-
-    refreshBalance();
-  </script>
+  <script src="renderer.js"></script>
 </body>
 </html>
